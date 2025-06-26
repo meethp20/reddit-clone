@@ -39,6 +39,6 @@ Adding shadcn buttons and themeproviding and wraping them over the children of l
 
 Added Auth :question 1: i dont know how am using the env file i just added the api auth kindeauth routets and started working w it in navbar ? did i wrap my children with the data?
 
-did i understand auth ? 
+did i understand auth ? YES didnt work on the sessions tho would love to implement it   
 can i impliment it myself ?
 understand each and every error 
