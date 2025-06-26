@@ -4,6 +4,8 @@ import Image from "next/image";
 import RedditMobile from "../../../public/reddit-full.svg"
 import RedditText from "../../../public/logo-name.svg"
 import { ThemeToggle } from "./ThemeToggle";
+import { Button } from "@/components/ui/button";
+import { RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
 export function Navbar(){
     return(
     <nav className="h-[10vh] w-full flex justify-between lg:px-14 items-center px-5">
@@ -24,6 +26,7 @@ export function Navbar(){
               
 </Link>
           <ThemeToggle />
+          <Button asChild variant={"secondary"}><RegisterLink>SignIn</RegisterLink></Button>
         </nav>
     )
    
