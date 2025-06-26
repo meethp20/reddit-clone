@@ -33,8 +33,9 @@ export async function Navbar(){
          <div className="flex justify-between items-center gap-x-3">
            <ThemeToggle />
           <NavbarButts user={user} /> 
-          <UserDropDown/>
-        
+          {user &&
+          <UserDropDown  userImage={user?.picture}  />
+          }
                
              
           </div>

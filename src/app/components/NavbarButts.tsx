@@ -12,7 +12,7 @@ export default function NavbarButts({user}:{user:KindeUserType}){
         
             <div>
                  {user ? (
-               <Button asChild ><LogoutLink>LogOut</LogoutLink></Button>
+                   null
           ) : (
           <div className="flex justify-between items-center gap-x-3">
          <Button asChild variant={"secondary"}><RegisterLink>SignIn</RegisterLink></Button>
