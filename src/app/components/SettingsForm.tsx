@@ -1,11 +1,28 @@
-import { Button } from "@/components/ui/button";
+
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { updateUserName } from "../actions";
 import { SubmitButton } from "./SubmitButton";
+import { useFormState } from "react-dom";
+import { useEffect } from "react";
+import { toast } from "sonner";
+
+const initialState = {
+    message="",
+    status:"",
+};
+
+
+
 
 export default function SettingsForm({userName}:{userName:string|null|undefined}){
+     const[state,formAction]=useFormState(updateUserName, initialState)
 
+     useEffect(()=>{
+    if(status==="green"){
+        toast("successfull")
+    }
+     },[state])
     return(
         <div className="mx-10 md:mx-4 ">
 
@@ -17,7 +34,7 @@ export default function SettingsForm({userName}:{userName:string|null|undefined}
             <Separator className="my-4 " />
 
             <div className="flex flex-row lg:mx-10 items-center gap-x-4">
-              <form action={updateUserName} className="flex flex-row lg:mx-10 items-center gap-x-4">
+              <form action={formAction} className="flex flex-row lg:mx-10 items-center gap-x-4">
                <h1 
                className="font-bold tracking-wide"
                >UserName

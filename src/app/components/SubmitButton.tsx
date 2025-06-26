@@ -14,6 +14,7 @@ export function SubmitButton(){
             pending? (
              <Button >
                   <Loader2 className="mr-2 w-4 h-4 animate-spin"/>
+                  please wait
              </Button>
             ) : (
              <Button type="submit" className="">

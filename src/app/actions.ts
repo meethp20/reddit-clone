@@ -3,9 +3,10 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import { redirect } from "next/navigation";
 import prisma from "./lib/db";
+import { Prisma } from "@prisma/client";
 
 
-export async function updateUserName(formData:FormData){
+export async function updateUserName(prevState:any ,formData:FormData){
     //get data
     const {getUser} = getKindeServerSession();
     const user = await getUser();
@@ -16,6 +17,7 @@ export async function updateUserName(formData:FormData){
     //from form input from username i hope it will be connnected
     const username = formData.get('username') as string  
 // now update this username in the db and return a message
+ try{
   await prisma.user.update({
     where:{
         id:user.id
@@ -24,9 +26,22 @@ export async function updateUserName(formData:FormData){
         userName:username,
     }
   })
+return{
 
+    message:"Username upadated",
+     status:"green,"
+}
 
-    message:"Username upadated"
+ }catch(e){
+    if(e instanceof Prisma.PrismaClientKnownRequestError){
+        if(e.code ==='P2002'){
+            return {message:" this name is already used  ",
+                status:"error",
+            }
+        }
+    }
+
+ }
 
 
 }

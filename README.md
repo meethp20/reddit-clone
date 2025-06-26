@@ -66,3 +66,6 @@ got this working
 and i thought why am i even doing sm for prisma while i was getting the auth done but then i realised i was doing it for the database
 
 using useformStatus hook from react 
+
+
+handling errors in prisma is hard so learning new to handle it in the actions.ts
