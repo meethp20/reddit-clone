@@ -44,6 +44,11 @@ export default function ({userImage}:IncomingImage){
                 Create Community
                 </Link>
             </DropdownMenuItem>
+             <DropdownMenuItem>
+                <Link className="w-full" href="/settings" >
+                 Settings
+                </Link>
+            </DropdownMenuItem>
             {userImage && <>
             <DropdownMenuSeparator />
              <DropdownMenuItem>
