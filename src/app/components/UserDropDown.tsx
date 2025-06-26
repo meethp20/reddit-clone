@@ -28,7 +28,7 @@ export default function ({userImage}:IncomingImage){
 
               </div>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-[300px] " >
+          <DropdownMenuContent align="end" className="lg:w-[300px] w-[150px] " >
             <DropdownMenuItem>
                 <Link className="w-full" href="/r/create" >
                 Create Community
@@ -44,10 +44,13 @@ export default function ({userImage}:IncomingImage){
                 Create Community
                 </Link>
             </DropdownMenuItem>
+            {userImage && <>
             <DropdownMenuSeparator />
              <DropdownMenuItem>
               <LogoutLink className="w-full">Logout</LogoutLink>
             </DropdownMenuItem>
+            </>
+}
           </DropdownMenuContent>
        </DropdownMenu>
     )

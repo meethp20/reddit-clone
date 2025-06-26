@@ -35,8 +35,10 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+Adding shadcn buttons and themeproviding and wraping them over the children of layout component 
 
-Added Auth 
+Added Auth :question 1: i dont know how am using the env file i just added the api auth kindeauth routets and started working w it in navbar ? did i wrap my children with the data?
+
 did i understand auth ? 
 can i impliment it myself ?
 understand each and every error 
