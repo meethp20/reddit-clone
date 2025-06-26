@@ -49,3 +49,7 @@ understand each and every error
 3.npx primsa init {initializes the local prisma}
 
 learnt about pgbouncer while adding supabase w prisma 
+
+created the user model in schema.prisma and then after that did 
+npx prisma db push 
+and pushed it 
