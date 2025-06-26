@@ -3,12 +3,13 @@ import prisma from "../lib/db";
 import { redirect } from "next/navigation";
 import SettingsForm from "../components/SettingsForm";
 
-async function getData(userId:string){
+async function getData(userId:string|undefined ){
     const data = await prisma.user.findUnique({
         where:{
-            id:userId,
+            id:userId
         },
         select:{
+            id:true,
             userName:true,
         }
     })
@@ -27,9 +28,7 @@ export  default async function Settings(){
 
     return(
         <div className="max-w-[1000px] flex flex-col mx-auto mt-4">  
-       
-         {user.username} 
-             <SettingsForm userName={user.username}/>
+             <SettingsForm userName={data?.userName}/>
         </div>
     )
 }
