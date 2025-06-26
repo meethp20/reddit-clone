@@ -25,7 +25,7 @@ export  default async function Settings(){
  const data = await getData(user.id)
 
     return(
-        <div>  
+        <div className="max-w-[1000px] flex flex-col mx-auto mt-4">  
              {data?.userName}
         </div>
     )
