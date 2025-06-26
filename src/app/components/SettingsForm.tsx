@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { updateUserName } from "../actions";
+import { SubmitButton } from "./SubmitButton";
 
 export default function SettingsForm({userName}:{userName:string|null|undefined}){
 
@@ -15,7 +17,7 @@ export default function SettingsForm({userName}:{userName:string|null|undefined}
             <Separator className="my-4 " />
 
             <div className="flex flex-row lg:mx-10 items-center gap-x-4">
-
+              <form action={updateUserName} className="flex flex-row lg:mx-10 items-center gap-x-4">
                <h1 
                className="font-bold tracking-wide"
                >UserName
@@ -28,9 +30,8 @@ export default function SettingsForm({userName}:{userName:string|null|undefined}
                maxLength={21}
                className="mt-2 lg:mx-4  w-[300px] md:w-[300px] lg:w-[700px]"
                />
-               <Button className="">
-                Edit
-               </Button>
+              <SubmitButton />
+               </form>
             </div>
             
         </div>

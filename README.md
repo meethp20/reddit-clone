@@ -64,3 +64,5 @@ so in api/auth/creation is created
 got a lot of prisma errors i wouldnt have survied if there werent chatgpt mostly it was beacuse of the output thing that outgenerateed and filepath issues 
 got this working 
 and i thought why am i even doing sm for prisma while i was getting the auth done but then i realised i was doing it for the database
+
+using useformStatus hook from react 
