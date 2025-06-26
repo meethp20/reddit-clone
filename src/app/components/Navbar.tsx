@@ -3,10 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import RedditMobile from "../../../public/reddit-full.svg"
 import RedditText from "../../../public/logo-name.svg"
+
 import { ThemeToggle } from "./ThemeToggle";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import NavbarButts from "./NavbarButts";
-
+import UserDropDown from "./UserDropDown";
 
 export async function Navbar(){
   const{getUser}  = getKindeServerSession();
@@ -31,8 +32,9 @@ export async function Navbar(){
 </Link> 
          <div className="flex justify-between items-center gap-x-3">
            <ThemeToggle />
-              
-            <NavbarButts user={user} />
+          <NavbarButts user={user} /> 
+          <UserDropDown/>
+        
                
              
           </div>
