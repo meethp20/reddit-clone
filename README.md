@@ -53,3 +53,14 @@ learnt about pgbouncer while adding supabase w prisma
 created the user model in schema.prisma and then after that did 
 npx prisma db push 
 and pushed it 
+
+now how do we store out user in the db?
+
+out of all the ways the easiet one is to make a new route handles or api route
+
+so in api/auth/creation is created
+
+
+got a lot of prisma errors i wouldnt have survied if there werent chatgpt mostly it was beacuse of the output thing that outgenerateed and filepath issues 
+got this working 
+and i thought why am i even doing sm for prisma while i was getting the auth done but then i realised i was doing it for the database
