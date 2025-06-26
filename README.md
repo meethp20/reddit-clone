@@ -42,3 +42,10 @@ Added Auth :question 1: i dont know how am using the env file i just added the a
 did i understand auth ? YES didnt work on the sessions tho would love to implement it   
 can i impliment it myself ?
 understand each and every error 
+
+
+1.npm i-D prima {so it doenst come up while deploying becomes a dev dependency and not needed during production}
+2.npm i @prisma/client { this will add it to dependency}
+3.npx primsa init {initializes the local prisma}
+
+learnt about pgbouncer while adding supabase w prisma 
