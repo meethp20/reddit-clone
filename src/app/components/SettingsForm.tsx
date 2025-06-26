@@ -22,6 +22,8 @@ export default function SettingsForm({userName}:{userName:string|null|undefined}
                </h1> 
                <Input 
                placeholder="userName"
+               required
+               name="username"
                defaultValue={userName||undefined}
                maxLength={21}
                className="mt-2 lg:mx-4  w-[300px] md:w-[300px] lg:w-[700px]"
