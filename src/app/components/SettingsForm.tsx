@@ -3,9 +3,10 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { updateUserName } from "../actions";
 import { SubmitButton } from "./SubmitButton";
-import { useFormState } from "react-dom";
 import { useEffect } from "react";
-import { toast } from "sonner";
+import { toast  } from "sonner";
+import { useState } from "react";
+import { useActionState } from "react";
 
 const initialState = {
     message: "",
@@ -13,7 +14,8 @@ const initialState = {
 };
 
 export default function SettingsForm({userName}:{userName:string|null|undefined}){
-     const[state,formAction]=useFormState(updateUserName, initialState)
+     const[state,formAction]=useActionState(updateUserName, initialState)
+     const [isError,setIsError]=useState(false)
 
      useEffect(()=>{
         if(state.message) {
@@ -21,6 +23,7 @@ export default function SettingsForm({userName}:{userName:string|null|undefined}
                 toast.success(state.message)
             } else {
                 toast.error(state.message)
+                setIsError(true)
             }
         }
      },[state])
@@ -42,6 +45,7 @@ export default function SettingsForm({userName}:{userName:string|null|undefined}
                </h1> 
                <Input 
                placeholder="userName"
+               onChange={()=>setIsError(false)}
                required
                name="username"
                defaultValue={userName||undefined}
@@ -51,6 +55,7 @@ export default function SettingsForm({userName}:{userName:string|null|undefined}
               <SubmitButton />
                </form>
             </div>
+            <div>{isError && <p className="lg:mx-48 lg:mt-3 text-red-800">this username has been taken</p> }</div>
             
         </div>
     )

@@ -25,3 +25,13 @@ model User{
   createdAt  DateTime @default(now())
 }
 
+model Subreddit{
+  id String@id @default(uuid())
+  name String
+  description String
+  User String?
+  UserId String? 
+  createdOn DateTime
+  updatedOn DateTime
+  
+}

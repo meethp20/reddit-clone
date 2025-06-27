@@ -17,7 +17,7 @@ export function SubmitButton(){
                   please wait
              </Button>
             ) : (
-             <Button type="submit" className="">
+             <Button type="submit" className="hover:cursor-pointer">
                 Edit
                </Button>
             )
