@@ -69,3 +69,5 @@ using useformStatus hook from react
 
 
 handling errors in prisma is hard so learning new to handle it in the actions.ts
+
+having errors while making the subreddit schema , db has it but the property doesnt show it 

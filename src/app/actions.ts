@@ -48,3 +48,20 @@ return{
 
 
 
+export async function createCommunity(formData:FormData){
+    const {getUser} = getKindeServerSession()
+    const user = await getUser()
+
+    if(!user){
+        return redirect("/api/auth/creation")
+    }
+ const data = await prisma.subreddit.create({
+        data:{
+            name:"",
+            userId:user.id
+        }
+ })
+    
+ 
+    
+}

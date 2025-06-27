@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  
 }
 
 datasource db {
@@ -29,9 +30,10 @@ model Subreddit{
   id String@id @default(uuid())
   name String
   description String
-  User String?
+  User String 
   UserId String? 
   createdOn DateTime
   updatedOn DateTime
   
 }
+
