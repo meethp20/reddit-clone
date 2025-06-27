@@ -1,4 +1,4 @@
-
+'use client'
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { updateUserName } from "../actions";
@@ -8,20 +8,21 @@ import { useEffect } from "react";
 import { toast } from "sonner";
 
 const initialState = {
-    message="",
-    status:"",
+    message: "",
+    success: false
 };
-
-
-
 
 export default function SettingsForm({userName}:{userName:string|null|undefined}){
      const[state,formAction]=useFormState(updateUserName, initialState)
 
      useEffect(()=>{
-    if(status==="green"){
-        toast("successfull")
-    }
+        if(state.message) {
+            if(state.success){
+                toast.success(state.message)
+            } else {
+                toast.error(state.message)
+            }
+        }
      },[state])
     return(
         <div className="mx-10 md:mx-4 ">

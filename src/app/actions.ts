@@ -5,8 +5,7 @@ import { redirect } from "next/navigation";
 import prisma from "./lib/db";
 import { Prisma } from "@prisma/client";
 
-
-export async function updateUserName(prevState:any ,formData:FormData){
+export async function updateUserName(prevState: any, formData: FormData) {
     //get data
     const {getUser} = getKindeServerSession();
     const user = await getUser();
@@ -27,22 +26,25 @@ export async function updateUserName(prevState:any ,formData:FormData){
     }
   })
 return{
-
-    message:"Username upadated",
-     status:"green,"
+    message:"Username updated successfully!",
+    success: true
 }
 
  }catch(e){
     if(e instanceof Prisma.PrismaClientKnownRequestError){
         if(e.code ==='P2002'){
-            return {message:" this name is already used  ",
-                status:"error",
+            return {
+                message:"This username is already taken",
+                success: false
             }
         }
     }
-
+    return {
+        message:"An error occurred while updating username",
+        success: false
+    }
  }
-
-
 }
+
+
 
