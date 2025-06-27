@@ -45,7 +45,7 @@ export async function updateUserName(prevState: any, formData: FormData) {
   }
 }
 
-export async function createCommunity(formData: FormData) {
+export async function createCommunity(prevState: any,formData: FormData) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
@@ -53,5 +53,24 @@ export async function createCommunity(formData: FormData) {
     return redirect("/api/auth/creation");
   }
 
-  const data = await prisma;
+  const name = formData.get("name") as string
+
+
+  // Add validation
+  if (!name ) {
+    return {
+      message: "Name and description are required",
+      success: false,                                                                   
+    };
+  }
+
+  const subreddit = await prisma.subreddit.create({
+    data:{
+        name:name,
+        userId:user.id,
+    },
+  });
+  return redirect("/");
+
+
 }
