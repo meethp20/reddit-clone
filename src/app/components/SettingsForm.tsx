@@ -52,7 +52,7 @@ export default function SettingsForm({userName}:{userName:string|null|undefined}
                maxLength={21}
                className="mt-2 lg:mx-4  w-[300px] md:w-[300px] lg:w-[700px]"
                />
-              <SubmitButton />
+              <SubmitButton  text="Edit" />
                </form>
             </div>
             <div>{isError && <p className="lg:mx-48 lg:mt-3 text-red-800">this username has been taken</p> }</div>

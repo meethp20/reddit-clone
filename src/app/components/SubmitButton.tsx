@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Loader2, Loader2Icon } from "lucide-react"
 import { useFormStatus } from "react-dom"
 
-export function SubmitButton(){
+export function SubmitButton({text}:{text:string}){
 
     const{pending} =useFormStatus()
 
@@ -18,7 +18,7 @@ export function SubmitButton(){
              </Button>
             ) : (
              <Button type="submit" className="hover:cursor-pointer">
-                Edit
+                {text}
                </Button>
             )
            }

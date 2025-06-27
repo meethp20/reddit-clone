@@ -27,7 +27,7 @@ model User {
 
 model Subreddit {
   id          String   @id @default(uuid())
-  name        String
+  name        String   @unique
   description String?
   userId      String?
   createdOn   DateTime @default(now())

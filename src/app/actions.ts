@@ -53,7 +53,7 @@ export async function createCommunity(prevState: any,formData: FormData) {
     return redirect("/api/auth/creation");
   }
 
-  const name = formData.get("name") as string
+  try{const name = formData.get("name") as string
 
 
   // Add validation
@@ -70,7 +70,29 @@ export async function createCommunity(prevState: any,formData: FormData) {
         userId:user.id,
     },
   });
-  return redirect("/");
+  return{ 
+    message:"Community created",
+    success:true,
+    
+  }
+}catch(err){
+  if(err instanceof Prisma.PrismaClientKnownRequestError){
+    if(err.code==='P2002'){
+      return {
+        message:"this name is already used",
+        success:false,
+      }
+      throw err
+      console.log(err)
 
+
+    }
+
+  }
+  return {
+      message: "An error occurred while updating username",
+      success: false,
+    };
+}
 
 }

@@ -6,7 +6,9 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { createCommunity } from "@/app/actions";
 import { useActionState } from "react";
-
+import { useEffect } from "react";
+import { toast  } from "sonner";
+import { SubmitButton } from "@/app/components/SubmitButton";
 const initialState = {
   message: "",
   success:false,
@@ -14,6 +16,16 @@ const initialState = {
 
 export default function SubRedditPage() {
   const [state, actionState] = useActionState(createCommunity, initialState);
+
+useEffect(() => {
+  if (state.message) {
+    if (state.success) toast.success(state.message);
+    else toast.error(state.message);
+  }
+}, [state]);
+
+
+
   return (
     <div className=" lg:w-[1000px] w-[400px] mx-auto ">
       <form action={actionState}>
@@ -41,7 +53,7 @@ export default function SubRedditPage() {
             <Button asChild variant="secondary">
               <Link href="/">Cancel</Link>
             </Button>
-            <Button type="submit">Create Community</Button>
+            <SubmitButton text="Create Community" />
           </div>
         </div>
       </form>
