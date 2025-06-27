@@ -1,6 +1,9 @@
+'use client'
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function SubRedditPage() {
   return (
@@ -16,11 +19,14 @@ export default function SubRedditPage() {
         </p>
       </div>
       <div className="relative">
-        <p className="absolute w-8 left-0 h-full items-center justify-center flex  ">
+        <p className="absolute pb-1 w-8 left-0 h-10 items-center justify-center flex  ">
           r/
         </p>
         <Input className="lg-[600px] pl-7" min={3} maxLength={21} />
-        
+         <div className="py-3 flex justify-end gap-x-2">
+          <Button asChild variant="secondary"><Link href="/">Cancel</Link></Button>
+          <Button >Change</Button>
+         </div>
       </div>
     </div>
   );

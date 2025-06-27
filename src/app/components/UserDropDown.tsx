@@ -39,11 +39,6 @@ export default function ({userImage}:IncomingImage){
                 Create post
                 </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>
-                <Link className="w-full" href="/r/create" >
-                Create Community
-                </Link>
-            </DropdownMenuItem>
              <DropdownMenuItem>
                 <Link className="w-full" href="/settings" >
                  Settings
