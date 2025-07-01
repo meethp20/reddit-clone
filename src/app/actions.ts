@@ -4,8 +4,11 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import prisma from "./lib/db";
 import { Prisma } from "@prisma/client";
-
-export async function updateUserName(prevState: any, formData: FormData) {
+type ActionResult = {
+  message:string,
+  success:boolean
+} | undefined
+export async function updateUserName(prevState: any, formData: FormData): Promise<ActionResult> {
   //get data
   const { getUser } = getKindeServerSession();
   const user = await getUser();
@@ -45,7 +48,7 @@ export async function updateUserName(prevState: any, formData: FormData) {
   }
 }
 
-export async function createCommunity(prevState: any,formData: FormData) {
+export async function createCommunity(prevState: any,formData: FormData): Promise<ActionResult> {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
@@ -82,8 +85,7 @@ export async function createCommunity(prevState: any,formData: FormData) {
         message:"this name is already used",
         success:false,
       }
-      throw err
-      console.log(err)
+      
 
 
     }
@@ -95,4 +97,35 @@ export async function createCommunity(prevState: any,formData: FormData) {
     };
 }
 
+}
+
+
+export async function updateDescription(formData:FormData):Promise<{ message: string; success: boolean }>{
+  const {getUser} = getKindeServerSession()
+  const user = await getUser()
+
+if(!user) redirect('/')
+
+  const subName = formData.get("subName") as string
+  const desc = formData.get("description") as string
+  try{await prisma.subreddit.update({
+  where:{
+    name: subName,
+  },
+  data:{
+    description:desc,
+  },
+ })
+ return{
+  message:"Successfully added description",
+  success:true,
+ }; 
+}catch(e){
+ return {
+    message: "An error occurred while updating description",
+    success: false,
+  };
+
+}
+  
 }
