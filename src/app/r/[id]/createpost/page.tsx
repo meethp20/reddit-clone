@@ -9,6 +9,7 @@ import { Text, Video } from "lucide-react";
 import { TabsContent } from "@radix-ui/react-tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import Tiptap from "@/app/components/TipTabEditor";
 
 
 const rules=[
@@ -55,10 +56,12 @@ export default function CreateRoute(
             <TabsContent value="posts" >
                <Card className="flex flex-row items-center" >
                 <form >
-                    <CardHeader >
+                    <CardHeader className="min-w-[500px]">
                         <Label >Title</Label>
-                       <Input className="min-w-[500px] my-3" name="title" required  placeholder="Title"  />    
+                       <Input className="min-w-[500px] my-3" name="title" required  placeholder="Title"  />  
+                       <Tiptap />  
                        </CardHeader>
+                       
                 </form>
 
                </Card>
