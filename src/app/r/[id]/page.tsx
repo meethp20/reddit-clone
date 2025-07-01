@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { SaveButton, SubmitButton } from "@/app/components/SubmitButton";
 import { updateDescription } from "@/app/actions";
 import { useActionState } from "react";
+import { Subdescription } from "@/app/components/SubDesciptionForm";
 
 async function getData(name:string){
   if(name==null||undefined) return
@@ -24,13 +25,12 @@ async function getData(name:string){
         }
     })
     return data
-}
-
+  }
 export  default async function SubRedditPage({params}:{params:{id: string}}) {
  const data = await getData(params.id)
  const {getUser} = getKindeServerSession();
  const user = await getUser();
-  const [state,formAction] = useActionState(updateDescription,null)
+
  
     return (
     <div className="lg:w-[1000px] flex mx-auto ">
@@ -51,20 +51,14 @@ export  default async function SubRedditPage({params}:{params:{id: string}}) {
             </div>
             { user?.id===data?.userId ?(
               <div className="lg:ml-5 lg:w-[300px]  gap-y-2">
-                 <form action={formAction}>
-                  <input  hidden defaultValue={params.id|| ''} name="subName" />
-                  <Textarea className="  " placeholder="add description" name="description"/>
-                  <SaveButton />
-                 </form>
+                <Subdescription desciption={data?.description} subName={params.id} />
                  </div>
             ):(
                <p className=" text-sm  text-secondary-foreground mx-7 font-normal">
              {data?.description}
              </p>
             ) }
-             <p className=" text-sm  text-secondary-foreground mx-7 font-normal">
-             {data?.description}
-             </p>
+            
 
            
         </Card>

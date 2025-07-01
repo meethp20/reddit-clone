@@ -8,7 +8,7 @@ type ActionResult = {
   message:string,
   success:boolean
 } | undefined
-export async function updateUserName(prevState: any, formData: FormData): Promise<ActionResult> {
+export async function updateUserName(prevState: any, formData: FormData) {
   //get data
   const { getUser } = getKindeServerSession();
   const user = await getUser();
@@ -48,7 +48,7 @@ export async function updateUserName(prevState: any, formData: FormData): Promis
   }
 }
 
-export async function createCommunity(prevState: any,formData: FormData): Promise<ActionResult> {
+export async function createCommunity(prevState: any,formData: FormData) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
@@ -85,22 +85,16 @@ export async function createCommunity(prevState: any,formData: FormData): Promis
         message:"this name is already used",
         success:false,
       }
-      
-
-
     }
-
   }
   return {
       message: "An error occurred while updating username",
       success: false,
     };
-}
-
-}
+}}
 
 
-export async function updateDescription(formData:FormData):Promise<{ message: string; success: boolean }>{
+export async function updateDescription(formData:FormData){
   const {getUser} = getKindeServerSession()
   const user = await getUser()
 
@@ -116,16 +110,9 @@ if(!user) redirect('/')
     description:desc,
   },
  })
- return{
-  message:"Successfully added description",
-  success:true,
- }; 
+ 
 }catch(e){
- return {
-    message: "An error occurred while updating description",
-    success: false,
-  };
+ 
 
 }
-  
 }
