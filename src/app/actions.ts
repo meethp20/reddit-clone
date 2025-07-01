@@ -94,25 +94,24 @@ export async function createCommunity(prevState: any,formData: FormData) {
 }}
 
 
-export async function updateDescription(formData:FormData){
-  const {getUser} = getKindeServerSession()
-  const user = await getUser()
+export async function updateDescription(
+  prevState:ActionResult,
+  formData: FormData
+) {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
 
-if(!user) redirect('/')
+  if (!user) return { message: "Not authenticated", success: false };
 
-  const subName = formData.get("subName") as string
-  const desc = formData.get("description") as string
-  try{await prisma.subreddit.update({
-  where:{
-    name: subName,
-  },
-  data:{
-    description:desc,
-  },
- })
- 
-}catch(e){
- 
-
-}
+  const subName = formData.get("subName") as string;
+  const desc = formData.get("description") as string;
+  try {
+    await prisma.subreddit.update({
+      where: { name: subName },
+      data: { description: desc },
+    });
+    return { message: "Description updated!", success: true };
+  } catch (e) {
+    return { message: "Failed to update description", success: false };
+  }
 }
