@@ -1,11 +1,13 @@
 "use server";
-import { Card, CardHeader } from "@/components/ui/card";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import prisma from "@/app/lib/db";
 import Link from "next/link";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Separator } from "@/components/ui/separator";
 import { Subdescription } from "@/app/components/SubDesciptionForm";
+import { Cake } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 async function getData(name: string) {
   if (name == null || undefined) return;
@@ -38,10 +40,11 @@ export default async function SubRedditPage({
       </div>
 
       <div className="w-[35%]  ">
-        <Card className="rounded-xl mb-3 relative ">
-          <div className="">
-            <CardHeader className="font-extrabold  mt-2.5 absolute top-0">
-              Community
+        <Card className="rounded-xl   ">
+          <div className="bg-gray-600 ">
+            <CardHeader className="font-extrabold  mt-2.5  top-0">
+              <CardTitle>  Community</CardTitle>
+            
             </CardHeader>
             <Separator className=" mt-5" />
           </div>
@@ -60,16 +63,30 @@ export default async function SubRedditPage({
           </div>
           {user?.id === data?.userId ? (
             <div className="lg:ml-5 lg:w-[300px]  gap-y-2">
+              <CardDescription>
               <Subdescription
                 desciption={data?.description}
                 subName={params.id}
               />
+              </CardDescription>
             </div>
           ) : (
             <p className=" text-sm  text-secondary-foreground mx-7 font-normal">
               {data?.description}
             </p>
           )}
+         <p className="text-sm flex flex-row items-center justify-center text-zinc-500  mx-7 font-normal">
+               <Cake className="text-zinc-500" />  created: {data?.createdOn
+                  ? new Date(data.createdOn).toLocaleDateString("en-US", {
+                      weekday: "long",
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })
+                  : "Unknown date"}
+              </p>
+              <Separator/>
+              <Button className="lg:ml-5 lg:w-[300px]  " asChild><Link href={user?.id ? `/r/${data?.name}/createpost ` : `/api/auth/login`} >Create Posts</Link></Button>
         </Card>
       </div>
     </div>
