@@ -3,6 +3,7 @@ import pic from "../../../../../public/pfp.png"
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { Item } from "@radix-ui/react-dropdown-menu";
+import Link from "next/link";
 
 
 const rules=[
@@ -37,14 +38,14 @@ export default function CreateRoute(
     return(
         <div className="max-w-[1000px]  mx-auto flex gap-x-10 mt-4 ">
             {/* // first box */}
-            <div className="w-[65%] ">
-                    
+            <div className="w-[65%] font-bold ">
+            SubReddit:<span className="">r/<Link className="text-primary" href={`/r/${params.id}`}>{params.id}</Link></span>
             </div>
 
-            // second box
+            {/* // second box */}
             <div className="w-[35%] ">
                <Card >
-                <div className="flex items-center gap-x-3 ">  
+                <div className="lg:flex gap-y-3 items-center gap-x-3 ">  
                     <Image src={pic} className="" width={70} alt="reddit" height={70}  />
                     <h1> r/{params.id}</h1>
                 </div>
