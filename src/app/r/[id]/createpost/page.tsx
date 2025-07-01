@@ -1,4 +1,4 @@
-import { Card } from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/ui/card";
 import pic from "../../../../../public/pfp.png"
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
@@ -6,6 +6,9 @@ import Link from "next/link";
 import { Tabs } from "@/components/ui/tabs";
 import { TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Text, Video } from "lucide-react";
+import { TabsContent } from "@radix-ui/react-tabs";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 
 const rules=[
@@ -49,6 +52,17 @@ export default function CreateRoute(
                 <TabsTrigger value="posts" > <Text/>    Post</TabsTrigger>
                  <TabsTrigger value="image" ><Video/>Image and Video</TabsTrigger>
             </TabsList>
+            <TabsContent value="posts" >
+               <Card className="flex flex-row items-center" >
+                <form >
+                    <CardHeader >
+                        <Label >Title</Label>
+                       <Input className="min-w-[500px] my-3" name="title" required  placeholder="Title"  />    
+                       </CardHeader>
+                </form>
+
+               </Card>
+            </TabsContent>
         </Tabs>
             </div>
 
