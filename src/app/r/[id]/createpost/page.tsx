@@ -2,8 +2,10 @@ import { Card } from "@/components/ui/card";
 import pic from "../../../../../public/pfp.png"
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
-import { Item } from "@radix-ui/react-dropdown-menu";
 import Link from "next/link";
+import { Tabs } from "@/components/ui/tabs";
+import { TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Text, Video } from "lucide-react";
 
 
 const rules=[
@@ -38,8 +40,16 @@ export default function CreateRoute(
     return(
         <div className="max-w-[1000px]  mx-auto flex gap-x-10 mt-4 ">
             {/* // first box */}
-            <div className="w-[65%] font-bold ">
-            SubReddit:<span className="">r/<Link className="text-primary" href={`/r/${params.id}`}>{params.id}</Link></span>
+            <div className="w-[65%]  ">
+            <p className="font-bold"> SubReddit:<span className="">r/<Link className="text-primary" href={`/r/${params.id}`}>{params.id}</Link></span>
+             </p>
+
+        <Tabs defaultValue="post" className="w-full my-3" >
+            <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="posts" > <Text/>    Post</TabsTrigger>
+                 <TabsTrigger value="image" ><Video/>Image and Video</TabsTrigger>
+            </TabsList>
+        </Tabs>
             </div>
 
             {/* // second box */}
