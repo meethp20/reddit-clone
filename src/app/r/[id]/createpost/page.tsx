@@ -85,8 +85,9 @@ export default function CreateRoute({ params }: { params: Promise<{ id: string }
               </form>
             </Card>
           </TabsContent>
-          <TabsContent value="image">
+          {/* <TabsContent value="image">
             <UploadDropzone
+            className="w-[100px] h-[100px]"
             onClientUploadComplete={(res)=>{
                 console.log(res)
             }}
@@ -95,7 +96,7 @@ export default function CreateRoute({ params }: { params: Promise<{ id: string }
                 alert("error");
               }}
             />
-          </TabsContent>
+          </TabsContent> */}
         </Tabs>
       </div>
 

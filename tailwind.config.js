@@ -1,10 +1,10 @@
 // tailwind.config.mjs
 
 import typography from '@tailwindcss/typography';
-import { withUt } from "uploadthing/tw";
+
 /** @type {import('tailwindcss').Config} */
 
-export default withUt({
+export default {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
@@ -12,4 +12,4 @@ export default withUt({
     extend: {},
   },
   plugins: [typography],
-});
+};
