@@ -58,7 +58,7 @@ export default function CreateRoute(
                 <form >
                     <CardHeader className="min-w-[500px]">
                         <Label >Title</Label>
-                       <Input className="min-w-[500px] my-3" name="title" required  placeholder="Title"  />  
+                       <Input className=" max-w-[200px] lg:max-w-full  my-3 " name="title" required  placeholder="Title"  />  
                        <Tiptap />  
                        </CardHeader>
                        
@@ -72,7 +72,7 @@ export default function CreateRoute(
             {/* // second box */}
             <div className="w-[35%] ">
                <Card >
-                <div className="lg:flex gap-y-3 items-center gap-x-3 ">  
+                <div className="lg:flex mx-3 gap-y-3 items-center gap-x-3 ">  
                     <Image src={pic} className="" width={70} alt="reddit" height={70}  />
                     <h1> r/{params.id}</h1>
                 </div>
