@@ -1,13 +1,14 @@
 "use server";
-
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import prisma from "./lib/db";
 import { Prisma } from "@prisma/client";
-type ActionResult = {
-  message:string,
-  success:boolean
-} | undefined
+type ActionResult =
+  | {
+      message: string;
+      success: boolean;
+    }
+  | undefined;
 export async function updateUserName(prevState: any, formData: FormData) {
   //get data
   const { getUser } = getKindeServerSession();
@@ -48,54 +49,55 @@ export async function updateUserName(prevState: any, formData: FormData) {
   }
 }
 
-export async function createCommunity(prevState: any,formData: FormData) {
+export async function createCommunity(prevState: any, formData: FormData) {
+  //get user data
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-
+  // if user is not there then return him back to auth
   if (!user) {
     return redirect("/api/auth/creation");
   }
+  // input the form name into the variable to use it
+  try {
+    const name = formData.get("name") as string;
 
-  try{const name = formData.get("name") as string
-
-
-  // Add validation
-  if (!name ) {
-    return {
-      message: "Name and description are required",
-      success: false,                                                                   
-    };
-  }
-
-  const subreddit = await prisma.subreddit.create({
-    data:{
-        name:name,
-        userId:user.id,
-    },
-  });
-  return{ 
-    message:"Community created",
-    success:true,
-    
-  }
-}catch(err){
-  if(err instanceof Prisma.PrismaClientKnownRequestError){
-    if(err.code==='P2002'){
+    // if that is not there then return empty
+    // Add validation
+    if (!name) {
       return {
-        message:"this name is already used",
-        success:false,
+        message: "Name and description are required",
+        success: false,
+      };
+    }
+    // manipulate the subreddit model table
+    const subreddit = await prisma.subreddit.create({
+      data: {
+        name: name,
+        userId: user.id,
+      },
+    });
+    return {
+      message: "Community created",
+      success: true,
+    };
+  } catch (err) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      if (err.code === "P2002") {
+        return {
+          message: "this name is already used",
+          success: false,
+        };
       }
     }
-  }
-  return {
+    return {
       message: "An error occurred while updating username",
       success: false,
     };
-}}
-
+  }
+}
 
 export async function updateDescription(
-  prevState:ActionResult,
+  prevState: ActionResult,
   formData: FormData
 ) {
   const { getUser } = getKindeServerSession();
