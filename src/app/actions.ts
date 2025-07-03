@@ -3,6 +3,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import prisma from "./lib/db";
 import { Prisma } from "@prisma/client";
+import { JSONContent } from "@tiptap/react";
 type ActionResult =
   | {
       message: string;
@@ -49,7 +50,7 @@ export async function updateUserName(prevState: any, formData: FormData) {
   }
 }
 
-export async function createCommunity(prevState: any, formData: FormData) {
+export async function createCommunity(prevState: {message:"", success:false}, formData: FormData) {
   //get user data
   const { getUser } = getKindeServerSession();
   const user = await getUser();
@@ -120,5 +121,41 @@ export async function updateDescription(
 }
 
 export async function uploadPost(
-  
-)
+// prevState: {message:"", success:false},
+  {jsonData}:{jsonData:JSONContent|null},
+  formData:FormData
+){
+  // get server session
+  const{getUser} = getKindeServerSession();
+  const user = await getUser();
+
+  // user check 
+
+  const title = formData.get("title") as string ;
+  const description = formData.get("description") as string;
+  const subName = formData.get("subName") as string;
+
+  if(!user){
+    redirect("/api/auth/login")
+  }
+
+  try{
+    await prisma.post.create(
+     {
+      data:{
+        title:title,
+        subName:subName,
+       userId:user.id
+        
+      }
+     }
+    )
+    return{
+      message:"",
+      success:true
+    }
+  }catch(e){
+
+  }
+
+}

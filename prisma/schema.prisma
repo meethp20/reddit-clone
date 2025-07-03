@@ -37,7 +37,7 @@ model Subreddit {
   User User?  @relation(fields: [userId], references: [id])
   post Post[]
 }
-
+ 
 model Post {
   id        String     @id @default(uuid())
   title     String

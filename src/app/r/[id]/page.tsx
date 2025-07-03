@@ -9,6 +9,7 @@ import { Subdescription } from "@/app/components/SubDesciptionForm";
 import { Cake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+
 async function getData(name: string) {
   if (name == null || undefined) return;
   const data = await prisma.subreddit.findUnique({
@@ -40,7 +41,7 @@ export default async function SubRedditPage({
       </div>
 
       <div className="w-[35%]  ">
-        <form action="">
+      
         <Card className="rounded-xl   ">
           <div className="bg-gray-600 ">
             <CardHeader className="font-extrabold  mt-2.5  top-0">
@@ -89,7 +90,7 @@ export default async function SubRedditPage({
               <Separator/>
               <Button className="lg:ml-5 lg:w-[300px]  " asChild><Link href={user?.id ? `/r/${data?.name}/createpost ` : `/api/auth/login`} >Create Posts</Link></Button>
         </Card>
-        </form>
+       
       </div>
     </div>
   );

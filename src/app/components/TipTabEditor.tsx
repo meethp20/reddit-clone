@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useEditor, EditorContent, Editor } from "@tiptap/react";
+import { useEditor, EditorContent, Editor, JSONContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
 const Menubar = ({ editor }: { editor: Editor | null }) => {
@@ -12,11 +12,12 @@ const Menubar = ({ editor }: { editor: Editor | null }) => {
       <Button
         onClick={() => {
           editor.chain().focus().toggleHeading({ level: 1 }).run();
-         console.log("!");
-         console.log(editor.getHTML());
+          console.log("!");
+          console.log(editor.getHTML());
         }}
-        
-        variant={editor.isActive("heading",{level:1}) ? "outline": "secondary"}
+        variant={
+          editor.isActive("heading", { level: 1 }) ? "outline" : "secondary"
+        }
         type="button"
       >
         H1
@@ -25,17 +26,27 @@ const Menubar = ({ editor }: { editor: Editor | null }) => {
   );
 };
 
-const Tiptap = () => {
+export function TipTap({
+  setJson,
+  Json,
+}: {
+  setJson: any;
+  Json: JSONContent |null ;
+}) {
   const editor = useEditor({
     extensions: [StarterKit],
-    content: "<p> share your thoughts </p>",
-    editorProps:{
-      attributes:{
-        className:"prose"
-      }
-    }
+    content: Json ?? null ,
+    editorProps: {
+      attributes: {
+        className: "prose",
+      },
+    },
+    onUpdate: ({ editor }) => {
+      const json = editor.getJSON();
+      setJson(Json)
+    },
   });
-
+  
   return (
     <div>
       <Menubar editor={editor} />
@@ -46,6 +57,6 @@ const Tiptap = () => {
       />
     </div>
   );
-};
+}
 
-export default Tiptap;
+

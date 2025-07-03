@@ -10,11 +10,13 @@ import { Text, Video } from "lucide-react";
 import { TabsContent } from "@radix-ui/react-tabs";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Tiptap from "@/app/components/TipTabEditor";
-import { UploadDropzone } from "@/app/components/UploadThing";
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { TipTap } from "@/app/components/TipTabEditor";
+import { useState } from "react";
+import { useActionState } from "react";
 import { use } from 'react';
+import { SubmitButton } from "@/app/components/SubmitButton";
+import { uploadPost } from "@/app/actions";
+import { JSONContent } from "@tiptap/react";
 
 
 const rules = [
@@ -39,10 +41,16 @@ const rules = [
     text: "gurpreet daddy sabka",
   },
 ];
+const initialState ={
+  message:"",
+  success: false,
+}
 
 export default function CreateRoute({ params }: { params: Promise<{ id: string }> }) {
-   
+   const [json,setJson] = useState<null|JSONContent>(null)
    const { id } = use(params);
+   const sendPosts = uploadPost.bind(null,{jsonData:JSONContent|null})
+      // const [state, formAction] = useActionState(uploadPost, initialState);
   return (
     <div className="max-w-[1000px]  mx-auto flex gap-x-10 mt-4 ">
       {/* // first box */}
@@ -71,7 +79,8 @@ export default function CreateRoute({ params }: { params: Promise<{ id: string }
           </TabsList>
           <TabsContent value="posts">
             <Card className="flex flex-row items-center">
-              <form>
+              <form action={sendposts}>
+                <input hidden defaultValue={id} name="subName" />
                 <CardHeader className="min-w-[500px]">
                   <Label>Title</Label>
                   <Input
@@ -80,8 +89,11 @@ export default function CreateRoute({ params }: { params: Promise<{ id: string }
                     required
                     placeholder="Title"
                   />
-                  <Tiptap />
+                  <TipTap setJson={setJson} Json={json}/>
                 </CardHeader>
+                <div className="mx-auto w-full">
+                <SubmitButton  text="submit post" />
+                </div>
               </form>
             </Card>
           </TabsContent>
