@@ -116,4 +116,9 @@ export async function updateDescription(
   } catch (e) {
     return { message: "Failed to update description", success: false };
   }
+
 }
+
+export async function uploadPost(
+  
+)
