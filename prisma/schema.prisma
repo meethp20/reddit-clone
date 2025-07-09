@@ -24,6 +24,7 @@ model User {
   createdSubreddits Subreddit[]
   createdAt         DateTime    @default(now())
   posts             Post[]
+  
 }
 
 model Subreddit {
